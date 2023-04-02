@@ -9,7 +9,6 @@ public class TerceirotrabalhoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TerceirotrabalhoApplication.class, args);
 		
-
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.poo.terceirotrabalho;
+package com.poo.terceirotrabalho.entidade;
 import java.time.OffsetDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "agendamentos")
+// @Table(name = "agendamentos")
 public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +25,4 @@ public class Agendamento {
     // @NotBlank
     private  OffsetDateTime horarioSaida;
 
-    // construtores, getters e setters omitidos
 }
