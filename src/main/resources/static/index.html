@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1969/1969386.png"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+</head>
+
+<body>
+    <script>
+        function agendar(tempo, i, j, horario) {
+            if (tempo == 'hora') {
+                var qtd = '1 '
+            } else {
+                var qtd = '30 '
+            }
+            let minhaString = horario;
+            let HorarioSemEspacos = minhaString.replace(/\s/g, '');
+            // console.log(semEspacos); // "Exemplocomespaços"
+            Swal.fire({
+                title: 'Deseja reserva um piano de ' + qtd + tempo + '?',
+                /*text: "You won't be able to revert this!",
+                icon: 'warning',*/
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Agendar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var btn = "submit-" + tempo + "-" + i + "-" + j + "-" + horario;
+                    var botao = document.getElementById(btn);
+                    botao.click();
+                }
+            })
+        }
+    </script>
+
+    <style>
+        .swal2-modal {
+            background-image: linear-gradient(200deg, #111010, #313030);
+            color: #fff;
+        }
+
+        #menu {
+            flex: 1;
+            /* isto é para a nav ocupar a largura toda menos a logo */
+            justify-content: center;
+            /* alinha horizontalmente */
+            align-items: center;
+            /* alinha verticalmente */
+            margin: 0;
+            position: relative;
+        }
+
+        .coluna-30 {
+            width: 30vw;
+            display: inline-block;
+            color: white;
+        }
+    </style>
+    <style>
+        /*body::-webkit-scrollbar {
+          width: 0.5em;
+        }
+        
+        body::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+        
+        body::-webkit-scrollbar-thumb {
+          background-color: #888;
+          border-radius: 20px;
+          border: 3px solid #f1f1f1;
+        }*/
+        .linha {
+            margin-bottom: 30px;
+            margin-top: 30px;
+            width: 100%;
+            height: 3px;
+            border: 0;
+            background: linear-gradient(to right, #fff, #F5FFFA, rgba(0, 0, 0, 0));
+        }
+
+        /* CSS */
+        .button-63 {
+            align-items: center;
+            background-image: linear-gradient(180deg, #cdcbc3, #585428 75%, #cdcbc3);
+            border: 2px outset #ccc;
+            border-radius: 12px;
+            box-shadow: rgba(242, 165, 17, 0.3);
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: calc(0.5em + 1vw);
+            /*0.5rem;*/
+            justify-content: center;
+            line-height: 1em;
+            padding: 12px 16px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .button-63:active,
+        .button-63:hover {
+            outline: 0;
+            color: #ccc;
+            background-image: linear-gradient(144deg, #b47b22, #0c172b);
+            /* background-image: linear-gradient(180deg, #b47b22, #956d2d 50%,#9f5917);*/
+            box-shadow: #BEBEBE 0 5px 5px -2px;
+        }
+
+        .button-63:disabled,
+        .button-63[disabled]:hover {
+            box-shadow: #000 0 0px 1px 0px;
+        }
+
+        .desabilitar:active .desabilitar:hover {
+            outline: 0;
+            background-image: linear-gradient(144deg, #070002, #C0C0C0 50%, #000000);
+        }
+
+        @media (min-width: 768px) {
+            .button-63 {
+                font-size: calc(1em + 1vw);
+                min-width: 100px;
+            }
+
+        }
+
+        /* CSS  font-size: calc(1em + 1vw); */
+        .button-25 {
+            background-color: #36A9AE;
+            background-image: linear-gradient(#37ADB2, #329CA0);
+            border: 1px solid #2A8387;
+            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: block;
+            font-family: -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            line-height: 100%;
+            margin: 0;
+            outline: 0;
+            padding: 11px 15px 12px;
+            text-align: center;
+            transition: box-shadow .05s ease-in-out, opacity .05s ease-in-out;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: 100%;
+        }
+
+        .button-25:hover {
+            box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset, rgba(0, 0, 0, 0.4) 0 1px 2px;
+            text-decoration: none;
+            transition-duration: .15s, .15s;
+        }
+
+        .button-25:active {
+            box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.4) 0 1px 1px;
+        }
+
+        .button-25:disabled {
+            cursor: not-allowed;
+            opacity: .6;
+        }
+
+        .button-25:disabled:active {
+            pointer-events: none;
+        }
+
+        .scroll-hidden::-webkit-scrollbar {
+            display: none;
+        }
+
+        .button-25:disabled:hover {
+            box-shadow: none;
+        }
+
+
+
+        img.card-img-top {
+            width: 12vw;
+            height: auto;
+        }
+
+        div.card {
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+            width: 17vw;
+            height: 75vh;
+            /*
+                width: 13vw; 
+                height:65vh;
+               */
+        }
+
+
+        .restante {
+            font-size: 2vw;
+        }
+
+        table.escolha tr td {
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (min-width:1280px) and (max-width:3080px) {
+            .subagenda {
+                font-size: 12px;
+                position: absolute;
+                bottom: 15vh;
+                right: 1.2vw;
+            }
+
+            p.cor {
+                position: absolute;
+                color: red;
+            }
+        }
+
+
+
+        @media (min-width:1024px) and (max-width:1280px) {
+            .subagenda {
+                font-size: 24px;
+                position: absolute;
+                bottom: 15.3vh;
+                right: 1.2vw;
+            }
+
+            p.cor {
+                position: absolute;
+                color: blue;
+            }
+
+            div.card {
+                width: 16vw;
+                height: 50vh;
+                /*
+                           width: 13vw; 
+                           height:65vh;
+                           */
+            }
+        }
+
+        .horarios {
+            width: 80vw;
+            margin-left: 9vw;
+            margin-right: 9vw;
+        }
+
+        @media (min-width:800px) and (max-width:1024px) {
+            .subagenda {
+                font-size: 0.2px;
+                position: absolute;
+                bottom: 15vh;
+                right: 1.2vw;
+            }
+
+            p.cor {
+                position: absolute;
+                color: yellow;
+            }
+
+        }
+
+        @media (min-width:0px) and (max-width:800px) {
+            .subagenda {
+                font-size: 1vw;
+                position: absolute;
+                bottom: 15vh;
+                right: 0vw;
+            }
+
+            p.cor {
+                position: absolute;
+                color: orange;
+            }
+        }
+    </style>
+    <style>
+        #DivLateral {
+            position: relative;
+            border-width: 2px;
+            margin-top: 20px;
+            margin-left: 50px;
+            float: left;
+        }
+
+        #DivA {
+            position: relative;
+            border-width: 2px;
+            margin-right: 50px;
+            float: right;
+        }
+
+        .group:before,
+        .group:after {
+            content: "";
+            display: table;
+        }
+
+        .group:after {
+            clear: both;
+        }
+
+        .group {
+            zoom: 1;
+        }
+    </style>
+    <style>
+        .div1,
+        .div2 {
+            display: inline-block;
+        }
+
+        .div1 {
+            float: left;
+            width: 50%;
+            height: 100%;
+
+        }
+
+        .div2 {
+            float: right;
+            width: 50%;
+            height: 100%;
+            /* outras propriedades CSS */
+        }
+
+        .btn-agendar {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 23px;
+            text-align: center;
+
+        }
+
+        .modal-backdrop {
+            /* Define a cor de fundo e a opacidade da camada de sobreposição */
+            background-color: black;
+        }
+
+        .btn-agendar {
+            background: linear-gradient(-45deg, "#229d7c", #0c172b);
+        }
+    </style>
+    <div class="caixa" align="center"
+        style="height: 100vh; width:100vw; background-image: linear-gradient(200deg, #111010, #313030);">
+
+        <div style="">
+            <div id="menu" align="center">
+                <div class="coluna-20">
+                    
+                </div>
+                <div class="coluna-50">
+                    <h1 style="color:white;">Sistema de agendamento</h1>
+                </div>
+                <div class="coluna-20">
+
+
+                </div>
+            </div>
+        </div>
+        <div aling="center" style="display: inline-block; font-family: Phantomsans, sans-serif;">
+
+            <button type="button" id="btn-1" data-toggle="modal" data-target="#ExemploModalCentralizado1" id="btn-1"
+                style=" background:rgba(0,0,0,0); border-color:rgba(0,0,0,0);  "> <!--disabled-->
+                <div class="card" style=" background-image:url(https://cdn.discordapp.com/attachments/719754916343709798/1068754435502780428/Domingo.png);
+                                          background-size:100% 100% ;
+                                          background-repeat:no-repeat;
+                                          border :solid 3px #f2a511;">
+                </div>
+            </button>
+        </div>
+
+        <!-- adicionando umas paradinhas aqui -->
+
+        <!-- Modal 1 -->
+        <div class="modal fade horarios scroll-hidden" id="ExemploModalCentralizado1" tabindex="1" role="dialog"
+            aria-labelledby="TituloModalCentralizado" aria-hidden="true" style="">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content caixa-1 border border-dark"
+                    style=" color: white; background: linear-gradient(-45deg,  #229d7c , #0c172b);">
+                    <div aling="center">
+                        <div class="">
+                            <a title="Dia da semana" class="">
+                                <p class="titulo" style="text-align: center; font-size: 2.6rem;">
+                                    <b>Domingo </b>
+                                </p>
+                            </a>
+                        </div>
+                        
+                        <div class=" linha-">
+                            <hr class="linha">
+                        </div>
+                        <div class="group group-01">
+                            <div class="sala">
+                                <h3 class="sala-01" id="DivLateral">
+                                    Sala 01
+                                </h3>
+                            </div>
+                            <div class="btn" id="DivA">
+                                <button class="btnAgendar-01 button-63 "> Agendar</button>
+                            </div>
+                        </div>
+                        <div class=" linha-">
+                            <hr class="linha">
+                        </div>
+                        <div class="group group-02">
+                            <div class="sala">
+                                <h3 class="sala-02" id="DivLateral">
+                                    Sala 02
+                                </h3>
+                            </div>
+                            <div class="btn" id="DivA">
+                                <button class="btnAgendar-02 button-63 "> Agendar</button>
+                            </div>
+                        </div>
+                        <div class=" linha-">
+                            <hr class="linha">
+                        </div>
+                        <div class="group group-03">
+                            <div class="sala">
+                                <h3 class="sala-03" id="DivLateral">
+                                    Sala 03
+                                </h3>
+                            </div>
+                            
+                            <div class="btn" id="DivA">
+                                <button class="btnAgendar-03 button-63 "> Agendar</button>
+                            </div>
+                        </div>
+
+                        <div class=" linha-">
+                            <hr class="linha">
+                        </div>
+                        <div class="group group-04">
+                            <div class="sala">
+                                <h3 class="sala-04" id="DivLateral">
+                                    Sala 04
+                                </h3>
+                            </div>
+                            
+                            <div class="btn" id="DivA">
+                                <button class="btnAgendar-04 button-63 "> Agendar</button>
+                            </div>
+                        </div>
+
+                        <div class=" linha-">
+                            <hr class="linha">
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>
