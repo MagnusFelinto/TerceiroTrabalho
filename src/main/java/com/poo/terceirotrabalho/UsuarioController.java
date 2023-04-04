@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.poo.terceirotrabalho.entidade.Usuario;
 import com.poo.terceirotrabalho.repositorio.UsuarioRepositorio;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -21,12 +23,13 @@ public class UsuarioController {
     private UsuarioRepositorio repositorio;
     @GetMapping
     public List<Usuario> listar(){
-        // Lista de usuarios
         return repositorio.findAll();
     }
+
     @PostMapping
-    public void salvar(@RequestBody Usuario usuario){
-            repositorio.save(usuario);
+    public Usuario salvar(@Valid @RequestBody Usuario usuario){
+            return repositorio.save(usuario);
+
     }
 
     @PutMapping

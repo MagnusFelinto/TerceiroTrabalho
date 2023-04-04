@@ -8,6 +8,7 @@ class TerceirotrabalhoApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
