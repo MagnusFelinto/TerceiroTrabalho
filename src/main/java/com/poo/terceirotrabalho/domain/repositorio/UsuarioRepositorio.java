@@ -1,10 +1,13 @@
-package com.poo.terceirotrabalho.repositorio;
+package com.poo.terceirotrabalho.domain.repositorio;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.poo.terceirotrabalho.entidade.Usuario;
+import com.poo.terceirotrabalho.domain.models.Usuario;
 
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario,Long>{
+    Optional<Usuario> findByEmail(String email);
     
 }
