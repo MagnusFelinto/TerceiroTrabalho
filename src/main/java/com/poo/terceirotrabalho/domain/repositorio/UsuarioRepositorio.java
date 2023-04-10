@@ -9,5 +9,7 @@ import com.poo.terceirotrabalho.domain.models.Usuario;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario,Long>{
     Optional<Usuario> findByEmail(String email);
-    
+    Optional<Usuario> findBySenha(String senha);
+    Optional<Usuario> findByEmailAndSenha(String email, String senha);
+
 }

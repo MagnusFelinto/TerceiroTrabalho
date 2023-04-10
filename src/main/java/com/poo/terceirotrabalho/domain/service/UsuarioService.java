@@ -3,9 +3,11 @@ package com.poo.terceirotrabalho.domain.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.poo.terceirotrabalho.domain.excecoes.EntidNaoEncotradaExepstion;
 import com.poo.terceirotrabalho.domain.excecoes.NegException;
 import com.poo.terceirotrabalho.domain.models.Usuario;
 import com.poo.terceirotrabalho.domain.repositorio.UsuarioRepositorio;
+import com.poo.terceirotrabalho.model.input.LoginInput;
 
 import lombok.AllArgsConstructor;
 
@@ -32,5 +34,7 @@ public class UsuarioService {
     public void excluir(Long userId){
         UserRepositorio.deleteById(userId);
     }
-
+    public Usuario login(LoginInput loginInput){
+        return UserRepositorio.findByEmailAndSenha(loginInput.getEmail(), loginInput.getSenha()).orElseThrow(() -> new EntidNaoEncotradaExepstion("Usuario não encontrado"));
+    }
 }

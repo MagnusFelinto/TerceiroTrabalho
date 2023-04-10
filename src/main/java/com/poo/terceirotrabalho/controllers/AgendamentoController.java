@@ -18,12 +18,12 @@ import com.poo.terceirotrabalho.domain.repositorio.AgendamentoRepositorio;
 import com.poo.terceirotrabalho.domain.service.AgendamentoService;
 import com.poo.terceirotrabalho.model.AgendamentoModel;
 import com.poo.terceirotrabalho.model.input.AgendamentoInput;
-
+import com.poo.terceirotrabalho.model.input.AgendamentoEditarInput;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/agendamento")
+@RequestMapping("/agendamentos")
 @AllArgsConstructor
 public class AgendamentoController {
     @Autowired
@@ -57,9 +57,9 @@ public class AgendamentoController {
     }
 
     @PutMapping("/editar/{AgendamentoId}")
-    public AgendamentoModel editarAgendamento(@PathVariable Long AgendamentoId, @RequestBody AgendamentoInput agendamentoInput){
-        Long usuarioId = agendamentoInput.getUsuario().getId();
-        return agendamentoService.editar(usuarioId, AgendamentoId, agendamentoInput);
+    public AgendamentoModel editarAgendamento(@PathVariable Long AgendamentoId, @RequestBody AgendamentoEditarInput agendamentoInput){
+    
+        return agendamentoService.editar(  AgendamentoId, agendamentoInput);
     }
 
     //Deletar uma Agendamento pelo ID do Agendamento

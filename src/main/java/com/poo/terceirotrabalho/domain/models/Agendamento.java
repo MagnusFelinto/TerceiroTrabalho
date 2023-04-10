@@ -25,13 +25,15 @@ public class Agendamento {
     private Long id;
     @ManyToOne
     private Usuario usuario;
-    
+
     @NotBlank
     private String horarioentrada;
 
     @NotBlank
     @Size(max = 300)   
-    private  String descricao;
+    private  String descricao;   
+ 
+    private  String titulo;
 
     @Enumerated(EnumType.STRING)
     private Reserva status;

@@ -26,8 +26,7 @@ public class Usuario {
     private String nome;
 
     @NotBlank
-    @Size(max = 20)
-    private String telefone;
+    private String urlavatar;
 
     @NotBlank
     @Size(max = 80)

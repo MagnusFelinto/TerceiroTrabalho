@@ -17,6 +17,7 @@ import com.poo.terceirotrabalho.domain.models.Usuario;
 import com.poo.terceirotrabalho.domain.repositorio.UsuarioRepositorio;
 import com.poo.terceirotrabalho.domain.service.AgendamentoService;
 import com.poo.terceirotrabalho.domain.service.UsuarioService;
+import com.poo.terceirotrabalho.model.input.LoginInput;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class UsuarioController {
     private AgendamentoService agendamentoService;
     private UsuarioService usuarioService;
 
-    //Listar todos os Usuario
+    
     @GetMapping
     public List<Usuario> listar(){
         return usuarioRepository.findAll();
@@ -67,12 +68,15 @@ public class UsuarioController {
         if(usuarioRepository.existsById(userId)){
             usuarioRepository.deleteById(userId);
             agendamentoService.deletarTodosAgendamentoDoUsuario(userId);
-            //  usuarioService.excluir(userId);
+            // usuarioService.excluir(userId);
             return ResponseEntity.noContent().build();
         }
         else
             return ResponseEntity.notFound().build();
-        
-
+    
+    }
+    @PostMapping("/login")
+    public Usuario criar(@Valid @RequestBody LoginInput loginInput){
+        return usuarioService.login(loginInput);
     }
 }
